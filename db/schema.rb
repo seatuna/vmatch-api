@@ -11,10 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160327214720) do
+ActiveRecord::Schema.define(version: 20160404024155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "characters", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "examples", force: :cascade do |t|
     t.text     "text",       null: false
@@ -24,6 +30,33 @@ ActiveRecord::Schema.define(version: 20160327214720) do
   end
 
   add_index "examples", ["user_id"], name: "index_examples_on_user_id", using: :btree
+
+  create_table "play_against_characters", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "character_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "play_against_characters", ["character_id"], name: "index_play_against_characters_on_character_id", using: :btree
+  add_index "play_against_characters", ["player_id"], name: "index_play_against_characters_on_player_id", using: :btree
+
+  create_table "play_as_characters", force: :cascade do |t|
+    t.integer  "player_id"
+    t.integer  "character_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "play_as_characters", ["character_id"], name: "index_play_as_characters_on_character_id", using: :btree
+  add_index "play_as_characters", ["player_id"], name: "index_play_as_characters_on_player_id", using: :btree
+
+  create_table "players", force: :cascade do |t|
+    t.string   "name"
+    t.string   "rank"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",           null: false
@@ -37,4 +70,8 @@ ActiveRecord::Schema.define(version: 20160327214720) do
   add_index "users", ["token"], name: "index_users_on_token", unique: true, using: :btree
 
   add_foreign_key "examples", "users"
+  add_foreign_key "play_against_characters", "characters"
+  add_foreign_key "play_against_characters", "players"
+  add_foreign_key "play_as_characters", "characters"
+  add_foreign_key "play_as_characters", "players"
 end
