@@ -44,6 +44,6 @@ class PlayAgainstCharactersController < ApplicationController
     end
 
     def play_against_character_params
-      params[:play_against_character]
+      params.require(:play_against_character).permit(:player_id, :character_id)
     end
 end
