@@ -20,15 +20,12 @@ class PlayersController < OpenReadController
 
     if current_user
       @player = Player.new(player_params)
-      @characters = Character.find(params[:player][:characters])
-      @opponents = Character.find(params[:player][:opponents])
-      @player.characters << @characters
-      @player.opponents << @opponents
-
+      selected_character = Character.find(params[:selected_character])
+      selected_opponent = Character.find(params[:selected_opponent])
+      @player.characters << selected_character
+      @player.opponents << selected_opponent
 
       if @player.save
-        # @player.characters << @character
-        # @player.opponents << @character
         render json: @player, status: :created, location: @player
       else
         render json: @player.errors, status: :unprocessable_entity
