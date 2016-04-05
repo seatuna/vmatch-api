@@ -4,7 +4,7 @@ class CharactersController < OpenReadController
   # GET /characters
   # GET /characters.json
   def index
-    @characters = Player.all
+    @characters = Character.all
     render json: @characters
   end
 
@@ -17,7 +17,7 @@ class CharactersController < OpenReadController
   private
 
     def set_character
-      @character = Player.find(params[:id])
+      @character = Character.find(params[:id])
     end
 
     def character_params
