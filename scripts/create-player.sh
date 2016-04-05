@@ -6,10 +6,6 @@ curl --include --request POST http://localhost:3000/players \
       "name": "tj",
       "rank": "silver"
     },
-    "selected_character1": 8,
-    "selected_character2": 2,
-    "selected_character3": 11,
-    "selected_opponent1": 14,
-    "selected_opponent2": 9,
-    "selected_opponent3": 10
+    "selected_character": 8,
+    "selected_opponent": 2,
   }'
