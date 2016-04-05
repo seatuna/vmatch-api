@@ -4,4 +4,6 @@ class Player < ActiveRecord::Base
   has_many :play_as_characters
   has_many :opponents, through: :play_against_characters, source: :character, dependent: :destroy
   has_many :play_against_characters
+
+  validates_uniqueness_of :name
 end
