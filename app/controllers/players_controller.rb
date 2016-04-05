@@ -1,11 +1,10 @@
-class PlayersController < ApplicationController
+class PlayersController < OpenReadController
   before_action :set_player, only: [:show, :update, :destroy]
 
   # GET /players
   # GET /players.json
   def index
     @players = Player.all
-
     render json: @players
   end
 
@@ -18,12 +17,25 @@ class PlayersController < ApplicationController
   # POST /players
   # POST /players.json
   def create
-    @player = Player.build(player_params)
 
-    if @player.save
-      render json: @player, status: :created, location: @player
+    if current_user
+      @player = Player.new(player_params)
+      @characters = Character.find(params[:player][:characters])
+      @opponents = Character.find(params[:player][:opponents])
+      @player.characters << @characters
+      @player.opponents << @opponents
+
+
+      if @player.save
+        # @player.characters << @character
+        # @player.opponents << @character
+        render json: @player, status: :created, location: @player
+      else
+        render json: @player.errors, status: :unprocessable_entity
+      end
+
     else
-      render json: @player.errors, status: :unprocessable_entity
+      head :bad_request
     end
   end
 
