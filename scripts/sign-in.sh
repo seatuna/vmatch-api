@@ -5,6 +5,6 @@ curl --include --request POST http://localhost:3000/sign-in \
   --data '{
     "credentials": {
       "email": "seatuna@water.com",
-      "password": "stillfishy"
+      "password": "fishy"
     }
   }'
