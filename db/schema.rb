@@ -52,8 +52,8 @@ ActiveRecord::Schema.define(version: 20160404142256) do
   add_index "play_as_characters", ["player_id"], name: "index_play_as_characters_on_player_id", using: :btree
 
   create_table "players", force: :cascade do |t|
-    t.string   "name"
-    t.string   "rank"
+    t.string   "name",       null: false
+    t.string   "rank",       null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
