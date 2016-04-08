@@ -2,6 +2,10 @@
 
 [Front End Repo](https://github.com/seatuna/vmatch-front-end)
 
+This API has a many-to-many relationship between players and characters. There
+are two join tables using these tables.  One join table is play_as_character
+while the other is play_against_character.
+
 ## API
 
 User authentication was provided.
