@@ -4,6 +4,14 @@
 
 User authentication was provided.
 
+### Players
+
+| Verb   | URI Pattern            | Controller#Action |
+|--------|------------------------|-------------------|
+| POST   | `/players`             | `players#create`  |
+| PATCH  | `/players/:id`         | `players#update`  |
+| DELETE | `/players/:id`         | `players#destroy` |
+
 ### Authentication
 
 | Verb   | URI Pattern            | Controller#Action |
